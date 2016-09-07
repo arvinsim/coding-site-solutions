@@ -3,13 +3,13 @@
 
 from __future__ import division
 
-# TODO: Fix inputs
 def get_input_elements():
-    number_of_items = input()
-    elements = []
-    for index in range(number_of_items):
-        elements.append(input())
-    return elements
+    number_of_items = raw_input()
+    if number_of_items < 10 and number_of_items > 2500:
+        sys.exit('The number of items is < 10 or > 2500')
+    list_of_numbers = raw_input()
+    elements = list_of_numbers.split(' ')
+    return [int(element) for element in elements]
 
 
 def get_mean(elements):
@@ -62,6 +62,6 @@ mean = get_mean(elements)
 median = get_median(elements)
 mode = get_mode(elements)
 
-print(mean)
-print(median)
+print(round(mean, 1))
+print(round(median, 1))
 print(mode)
