@@ -2,7 +2,6 @@
 # https://www.hackerrank.com/challenges/s10-basic-statistics
 # Python 2
 
-
 from __future__ import division
 
 def get_input_elements():
