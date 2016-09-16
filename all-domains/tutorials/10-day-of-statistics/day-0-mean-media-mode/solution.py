@@ -1,5 +1,7 @@
 # Day 0: Mean, Median, and Mode
 # https://www.hackerrank.com/challenges/s10-basic-statistics
+# Python 2
+
 
 from __future__ import division
 
@@ -11,6 +13,15 @@ def get_input_elements():
     elements = list_of_numbers.split(' ')
     return [int(element) for element in elements]
 
+# def get_input_elements():
+#     number_of_items = ""
+#     with open('input04.txt') as f:
+#         number_of_items = f.readline()
+#         if number_of_items < 10 and number_of_items > 2500:
+#             sys.exit('The number of items is < 10 or > 2500')
+#         list_of_numbers = f.readline()
+#         elements = list_of_numbers.split(' ')
+#         return [int(element) for element in elements]
 
 def get_mean(elements):
     """The average of all the integers in a set of values."""
@@ -49,13 +60,11 @@ def get_mode(elements):
         else:
             dictionary[element] = 1
 
-    mode = elements[0]
-    highest_count = 0
-    for key, value in dictionary.items():
-        if highest_count <= value and mode > key:
-            mode = key
-            highest_count = value
-    return mode
+    # Get the max value
+    max_value = max(dictionary.values())
+    highest_elements = [key for key, value in dictionary.items() if value == max_value]
+    modes = sorted(highest_elements)
+    return modes[0]
 
 elements = get_input_elements()
 mean = get_mean(elements)
