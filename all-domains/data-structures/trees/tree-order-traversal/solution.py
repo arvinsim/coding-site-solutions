@@ -7,13 +7,10 @@ self.left (the left child of the node)
 self.right (the right child of the node)
 self.data (the value of the node)
 """
-def preOrder(root):
-    print(root.data)
-    child = root.left or root.right
-    if child is None:
-        return root
-    else:
-        return preOrder(child)
+def preOrder(tree):
+    if tree is None: return
+    print(tree.data)
+    return preOrder(tree.left) or preOrder(tree.right)
 
 class Node:
     def __init__(self, left=None, right=None, data=None):
@@ -23,11 +20,11 @@ class Node:
 
 
 one = Node(data=1)
-four = Node(data=1)
+four = Node(data=4)
 six = Node(data=6)
 
 five = Node(left=one, right=four, data=5)
 two = Node(left=six, data=2)
-three = Node(left=five, right=2, data=3)
+three = Node(left=five, right=two, data=3)
 
 preOrder(three)
