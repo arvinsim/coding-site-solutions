@@ -1,4 +1,4 @@
-# https://www.hackerrank.com/challenges/tree-postorder-traversal
+# https://www.hackerrank.com/challenges/tree-inorder-traversal
 # Python 2
 
 """
