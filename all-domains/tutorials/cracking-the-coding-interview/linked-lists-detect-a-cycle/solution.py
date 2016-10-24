@@ -13,13 +13,17 @@ A Node is defined as:
 """
 
 def has_cycle(node):
-    if hasattr(node, 'visited'):
-        return True
-    node.visited = True
+    c = node
+    n = node.next
 
-    if node.next is None:
-        return False
-    return has_cycle(node.next)
+    while n is not None:
+        if hasattr(c, 'visited'):
+            return True
+        c.visited = True
+        c = n.next
+        n = c.next
+    return False
+
 
 # TEST CODE
 class Node(object):
@@ -41,6 +45,6 @@ x = Node('x')
 y = Node('y', x)
 third_case = Node('third_case', y)
 
-# print('has_cycle(first_case): {}'.format(has_cycle(first_case)))
+print('has_cycle(first_case): {}'.format(has_cycle(first_case)))
 print('has_cycle(second_case): {}'.format(has_cycle(second_case)))
-# print('has_cycle(second_case): {}'.format(has_cycle(third_case)))
+print('has_cycle(second_case): {}'.format(has_cycle(third_case)))
