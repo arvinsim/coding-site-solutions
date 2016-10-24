@@ -1,21 +1,29 @@
 # https://www.hackerrank.com/challenges/ctci-queue-using-two-stacks
 # Python 3
 
-
 class MyQueue(object):
     def __init__(self):
         self.enqueue = []
         self.dequeue = []
 
-    def peek(self):
-        if len(self.dequeue) > 0:
-            return self.dequeue[0]
-
-    def pop(self):
+    def _transfer_enqueue_to_dequeue(self):
         while len(self.enqueue) > 0:
             self.dequeue.append(self.enqueue.pop())
-        if len(self.dequeue) > 0:
+
+    def peek(self):
+        if not self.dequeue:
+            self._transfer_enqueue_to_dequeue()
+        value = self.dequeue.pop()
+        self.dequeue.append(value)
+        return value
+
+    def pop(self):
+        if not self.dequeue:
+            self._transfer_enqueue_to_dequeue()
+        if self.dequeue:
             return self.dequeue.pop()
+        else:
+            return None
 
     def put(self, value):
         self.enqueue.append(value)
