@@ -18,25 +18,36 @@ For the purposes of this challenge, we define a binary search tree to be a binar
 Note: A binary tree is not a binary search if there are duplicate values.
 """
 
-from sample_trees import get_simple_tree, get_complex_tree
+import sys
+from sample_trees import get_simple_tree, get_complex_tree, get_binary_search_tree
 
 simple_tree = get_simple_tree()
 complex_tree = get_complex_tree()
 
-def check_binary_search_tree_(root):
-    if root is None:
+
+def inorder_traversal(root):
+    if root.left is not None:
+        inorder_traversal(root.left)
+    print(root.data)
+    if root.right is not None:
+        inorder_traversal(root.right)
+
+# Arbitrary since Python 3 does not have a limit
+INT_MIN = -9999999999999
+INT_MAX = 9999999999999
+
+def check_binary_search_tree_efficient(node, minimum, maximum):
+    if node is None:
         return True
 
-    left = root.left
-    right = root.right
-    data = root.data
+    if node.data < minimum or node.data > maximum:
+        return False
 
-    if left is not None:
-        if left.data >= data:
-            return False
-    if right is not None:
-        if right.data <= data:
-            return False
+    return check_binary_search_tree_efficient(node.left, minimum, node.data-1) and check_binary_search_tree_efficient(node.right, node.data+1, maximum)
 
-print(check_binary_search_tree_(simple_tree)) # Should return False
+def check_binary_search_tree_(root):
+    return check_binary_search_tree_efficient(root, INT_MIN, INT_MAX)
+
+# print(check_binary_search_tree_(simple_tree)) # Should return False
 # print(check_binary_search_tree_(complex_tree)) # Should return False
+# print(check_binary_search_tree_(get_binary_search_tree())) # Should return False
