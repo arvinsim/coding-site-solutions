@@ -101,7 +101,7 @@ def get_binary_search_tree():
          / \  / \
         1  3 5  7
 
-    This is a binary serach tree
+    This is a binary search tree
     :return:
     """
     n1 = Node(1)
