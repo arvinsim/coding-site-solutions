@@ -1,2 +1,7 @@
-# hackerrank-solutions
-Solutions to Hacker Rank Problems
+# Coding Site Solutions
+
+Solutions to Coding Sites
+
+- Hackerrank
+- LeetCode
+- CodeWars
